@@ -1,0 +1,5 @@
+{"level":"INFO","time":"2024-08-18T16:10:31.065+0700","caller":"configs/mysql.config.go:25","msg":"Connected to database!default"}
+{"level":"INFO","time":"2024-08-18T16:10:31.068+0700","caller":"configs/mysql.config.go:41","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-18T16:11:33.324+0700","caller":"configs/mysql.config.go:62","msg":"Migrate database success!"}
+{"level":"INFO","time":"2024-08-18T16:17:52.511+0700","caller":"configs/redis.config.go:35","msg":"Connected to redis!"}
+{"level":"INFO","time":"2024-08-18T16:17:52.512+0700","caller":"configs/main.config.go:11","msg":"Configs loaded!"}

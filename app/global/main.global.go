@@ -1,21 +1,15 @@
 package global
 
-type ENV struct {
-	Server struct {
-		Port int `mapstructure:"port"`
-	} `mapstructure:"server"`
-	MySql struct {
-		Host            string `mapstructure:"host"`
-		Port            int    `mapstructure:"port"`
-		Username        string `mapstructure:"username"`
-		Password        string `mapstructure:"password"`
-		DbName          string `mapstructure:"dbName"`
-		MaxIdeConns     int    `mapstructure:"maxIdeConns"`
-		MaxOpenConns    int    `mapstructure:"maxOpenConns"`
-		ConnMaxLifetime int    `mapstructure:"connMaxLifetime"`
-	} `mapstructure:"mysql"`
-}
+import (
+	"github.com/phucpham-infinity/go-nextpress/app/structs"
+	"github.com/phucpham-infinity/go-nextpress/pkg/logger"
+	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
+)
 
 var (
-	Env ENV
+	Config structs.Config
+	Logger *logger.LoggerZap
+	DB     *gorm.DB
+	RDB    *redis.Client
 )

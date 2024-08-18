@@ -1,8 +1,8 @@
 server:
-  port: 3000
+  port: ":5000"
 logger:
-  path: '/'
-  filename: '/logger.txt'
+  level: 'debug'
+  filename: './.tmp/logs/app.xxx.log'
 mysql:
   host: 45.149.207.141
   port: 33306
@@ -12,3 +12,6 @@ mysql:
   maxIdeConns: 10
   maxOpenConns: 100
   connMaxLifetime: 3600
+redis:
+  host: 45.149.207.141
+  port: 16379

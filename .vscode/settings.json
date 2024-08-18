@@ -1,3 +1,15 @@
 {
-  "cSpell.words": ["etag", "gofiber", "mapstructure", "nextpress", "phucpham"]
+  "cSpell.words": [
+    "etag",
+    "gofiber",
+    "gorm",
+    "idempotency",
+    "mapstructure",
+    "Metas",
+    "nextpress",
+    "phucpham",
+    "requestid",
+    "usermeta",
+    "varchar"
+  ]
 }
