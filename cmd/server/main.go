@@ -2,15 +2,15 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/phucpham-infinity/go-nextpress/pkg/response"
+	"github.com/gofiber/fiber/v2/middleware/etag"
+	"github.com/phucpham-infinity/go-nextpress/app/configs"
 )
 
 func main() {
-	app := fiber.New()
+	configs.Run()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return response.SuccessResponse(c, 200, []string{"91"})
-	})
+	app := fiber.New()
+	app.Use(etag.New())
 
 	app.Listen(":3000")
 }
