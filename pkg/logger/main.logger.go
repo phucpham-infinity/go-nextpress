@@ -32,5 +32,6 @@ func getEncoderLog() zapcore.Encoder {
 	encoderConfig.TimeKey = "time"
 	encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
 	encoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
+
 	return zapcore.NewJSONEncoder(encoderConfig)
 }
