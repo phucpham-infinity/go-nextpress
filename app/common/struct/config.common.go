@@ -1,4 +1,4 @@
-package common
+package common_struct
 
 type Config struct {
 	Server ServerConfig `mapstructure:"server"`

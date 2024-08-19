@@ -1,7 +1,7 @@
 package context
 
 import (
-	"github.com/phucpham-infinity/go-nextpress/app/common"
+	common_struct "github.com/phucpham-infinity/go-nextpress/app/common/struct"
 	"github.com/phucpham-infinity/go-nextpress/pkg/logger"
 	"github.com/redis/go-redis/v9"
 
@@ -18,15 +18,15 @@ type IAppContext interface {
 	SetLogger(*logger.LoggerZap) *appContext
 	GetLogger() *logger.LoggerZap
 
-	SetConfig(*common.Config) *appContext
-	GetConfig() *common.Config
+	SetConfig(*common_struct.Config) *appContext
+	GetConfig() *common_struct.Config
 }
 
 type appContext struct {
 	DB     *gorm.DB
 	RDB    *redis.Client
 	Logger *logger.LoggerZap
-	Config *common.Config
+	Config *common_struct.Config
 }
 
 var appContextInstance *appContext
@@ -71,11 +71,11 @@ func (ctx *appContext) GetLogger() *logger.LoggerZap {
 	return appContextInstance.Logger
 }
 
-func (ctx *appContext) SetConfig(Config *common.Config) *appContext {
+func (ctx *appContext) SetConfig(Config *common_struct.Config) *appContext {
 	appContextInstance.Config = Config
 	return appContextInstance
 }
 
-func (ctx *appContext) GetConfig() *common.Config {
+func (ctx *appContext) GetConfig() *common_struct.Config {
 	return appContextInstance.Config
 }

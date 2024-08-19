@@ -29,7 +29,7 @@ func InitMysql() {
 	context.AppContext().SetMySqlConnection(db)
 
 	SetPoolMysql()
-	Migrate()
+	// Migrate()
 }
 
 func GenDAO() {

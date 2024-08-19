@@ -9,6 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
+	common_response "github.com/phucpham-infinity/go-nextpress/app/common/response"
 	"github.com/phucpham-infinity/go-nextpress/app/configs"
 	"github.com/phucpham-infinity/go-nextpress/app/context"
 	"go.uber.org/zap"
@@ -32,7 +33,10 @@ func main() {
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		logger.Info("Hello, World!", zap.String("okay", "success"))
-		return c.SendString("Hello, World!")
+		return common_response.NewSuccessResponse(c).WithData(fiber.Map{
+			"name": "Game",
+			"age":  20,
+		}).SendJSON()
 	})
 
 	app.Listen(config.Server.Port)

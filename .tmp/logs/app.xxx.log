@@ -48,3 +48,30 @@
 {"level":"INFO","time":"2024-08-19T23:22:46.113+0700","caller":"configs/mysql.config.go:72","msg":"Migrate database success!"}
 {"level":"INFO","time":"2024-08-19T23:22:47.816+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
 {"level":"INFO","time":"2024-08-19T23:22:47.816+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T23:45:07.688+0700","caller":"configs/mysql.config.go:28","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T23:45:07.690+0700","caller":"configs/mysql.config.go:59","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T23:45:26.617+0700","caller":"configs/mysql.config.go:28","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T23:45:26.620+0700","caller":"configs/mysql.config.go:59","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T23:45:27.608+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T23:45:27.608+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T23:45:50.839+0700","caller":"server/main.go:35","msg":"Hello, World!","okay":"success"}
+{"level":"INFO","time":"2024-08-19T23:47:37.705+0700","caller":"configs/mysql.config.go:28","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T23:47:37.707+0700","caller":"configs/mysql.config.go:59","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T23:47:38.845+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T23:47:38.845+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T23:47:44.090+0700","caller":"server/main.go:35","msg":"Hello, World!","okay":"success"}
+{"level":"INFO","time":"2024-08-19T23:48:01.361+0700","caller":"configs/mysql.config.go:28","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T23:48:01.364+0700","caller":"configs/mysql.config.go:59","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T23:48:02.276+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T23:48:02.277+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T23:48:08.382+0700","caller":"server/main.go:35","msg":"Hello, World!","okay":"success"}
+{"level":"INFO","time":"2024-08-19T23:54:33.388+0700","caller":"configs/mysql.config.go:28","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T23:54:33.391+0700","caller":"configs/mysql.config.go:59","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T23:54:34.396+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T23:54:34.397+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T23:54:37.791+0700","caller":"server/main.go:35","msg":"Hello, World!","okay":"success"}
+{"level":"INFO","time":"2024-08-19T23:54:57.003+0700","caller":"configs/mysql.config.go:28","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T23:54:57.005+0700","caller":"configs/mysql.config.go:59","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T23:54:58.068+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T23:54:58.068+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T23:54:59.635+0700","caller":"server/main.go:35","msg":"Hello, World!","okay":"success"}

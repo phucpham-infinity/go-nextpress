@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/phucpham-infinity/go-nextpress/app/common"
+	common_struct "github.com/phucpham-infinity/go-nextpress/app/common/struct"
 	"github.com/phucpham-infinity/go-nextpress/app/context"
 	"github.com/spf13/viper"
 )
@@ -31,7 +31,7 @@ func InitEnv() {
 		os.Exit(1)
 	}
 
-	var config common.Config
+	var config common_struct.Config
 
 	if err := viper.Unmarshal(&config); err != nil {
 		fmt.Printf("Unable to decode into struct, %v\n", err)
