@@ -1,4 +1,4 @@
-package po
+package user_model
 
 import (
 	"github.com/google/uuid"

@@ -1,19 +1,23 @@
 package configs
 
 import (
-	"context"
+	_context "context"
 	"fmt"
 
-	"github.com/phucpham-infinity/go-nextpress/app/global"
+	"github.com/phucpham-infinity/go-nextpress/app/context"
+
 	"github.com/redis/go-redis/v9"
 	"go.uber.org/zap"
 )
 
-var ctx = context.Background()
+var ctx = _context.Background()
 
 func InitRedis() {
+	logger := context.AppContext().GetLogger()
+	config := context.AppContext().GetConfig()
+
 	addr := "%s:%v"
-	addr = fmt.Sprintf(addr, global.Config.Redis.Host, global.Config.Redis.Port)
+	addr = fmt.Sprintf(addr, config.Redis.Host, config.Redis.Port)
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     addr,
 		Password: "", // no password set
@@ -24,13 +28,13 @@ func InitRedis() {
 	if rdb != nil {
 		_, err := rdb.Ping(ctx).Result()
 		if err != nil {
-			global.Logger.Error("Error pinging redis", zap.Error(err))
+			logger.Error("Error pinging redis", zap.Error(err))
 			panic(err)
 		}
 	} else {
-		global.Logger.Error("Redis client is nil")
+		logger.Error("Redis client is nil")
 		panic("Redis client is nil")
 	}
-	global.RDB = rdb
-	global.Logger.Info("Connected to redis! " + addr)
+	context.AppContext().SetRedisClient(rdb)
+	logger.Info("Connected to redis! " + addr)
 }

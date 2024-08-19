@@ -34,3 +34,17 @@
 {"level":"INFO","time":"2024-08-18T16:19:05.010+0700","caller":"configs/mysql.config.go:62","msg":"Migrate database success!"}
 {"level":"INFO","time":"2024-08-18T16:19:05.991+0700","caller":"configs/redis.config.go:35","msg":"Connected to redis!"}
 {"level":"INFO","time":"2024-08-18T16:19:05.992+0700","caller":"configs/main.config.go:11","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T22:06:57.697+0700","caller":"configs/mysql.config.go:27","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T22:06:57.700+0700","caller":"configs/mysql.config.go:55","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T22:06:58.737+0700","caller":"configs/redis.config.go:37","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T22:06:58.737+0700","caller":"configs/main.config.go:11","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T22:08:10.810+0700","caller":"configs/mysql.config.go:27","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T22:08:10.813+0700","caller":"configs/mysql.config.go:55","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T22:09:20.441+0700","caller":"configs/mysql.config.go:67","msg":"Migrate database success!"}
+{"level":"INFO","time":"2024-08-19T22:09:21.450+0700","caller":"configs/redis.config.go:37","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T22:09:21.450+0700","caller":"configs/main.config.go:11","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-08-19T23:21:40.606+0700","caller":"configs/mysql.config.go:28","msg":"Connected to database! default"}
+{"level":"INFO","time":"2024-08-19T23:21:40.608+0700","caller":"configs/mysql.config.go:59","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-08-19T23:22:46.113+0700","caller":"configs/mysql.config.go:72","msg":"Migrate database success!"}
+{"level":"INFO","time":"2024-08-19T23:22:47.816+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-08-19T23:22:47.816+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}

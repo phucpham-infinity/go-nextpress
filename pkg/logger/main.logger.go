@@ -3,7 +3,7 @@ package logger
 import (
 	"os"
 
-	"github.com/phucpham-infinity/go-nextpress/app/structs"
+	"github.com/phucpham-infinity/go-nextpress/app/common"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -13,7 +13,7 @@ type LoggerZap struct {
 	*zap.Logger
 }
 
-func AppLogger(config structs.LoggerConfig) *LoggerZap {
+func AppLogger(config common.LoggerConfig) *LoggerZap {
 	encoder := getEncoderLog()
 	hook := lumberjack.Logger{
 		Filename:   config.Filename,

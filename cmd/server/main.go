@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/phucpham-infinity/go-nextpress/app/configs"
-	"github.com/phucpham-infinity/go-nextpress/app/global"
+	"github.com/phucpham-infinity/go-nextpress/app/context"
 	"go.uber.org/zap"
 )
 
@@ -27,10 +27,13 @@ func main() {
 	app.Use(idempotency.New())
 	app.Use(limiter.New())
 
+	logger := context.AppContext().GetLogger()
+	config := context.AppContext().GetConfig()
+
 	app.Get("/", func(c *fiber.Ctx) error {
-		global.Logger.Info("Hello, World!", zap.String("okay", "success"))
+		logger.Info("Hello, World!", zap.String("okay", "success"))
 		return c.SendString("Hello, World!")
 	})
 
-	app.Listen(global.Config.Server.Port)
+	app.Listen(config.Server.Port)
 }

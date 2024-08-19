@@ -1,6 +1,6 @@
 package configs
 
-import "github.com/phucpham-infinity/go-nextpress/app/global"
+import "github.com/phucpham-infinity/go-nextpress/app/context"
 
 func Run() {
 	InitEnv()
@@ -8,5 +8,6 @@ func Run() {
 	InitMysql()
 	InitRedis()
 
-	global.Logger.Info("Configs loaded!")
+	logger := context.AppContext().GetLogger()
+	logger.Info("Configs loaded!")
 }
