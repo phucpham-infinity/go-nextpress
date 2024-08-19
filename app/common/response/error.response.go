@@ -93,6 +93,15 @@ func (r *AppError) IsBadRequest(root error) *AppError {
 	return r
 }
 
+func (r *AppError) IsCannotCreateEntity(entity string, err error) *AppError {
+	r.Status = http.StatusInternalServerError
+	r.RootErr = err
+	r.Message = "Cannot create " + entity
+	r.Key = "cannot_create_entity"
+	r.Log = err.Error()
+	return r
+}
+
 func (r *AppError) RootError() error {
 	if err, ok := r.RootErr.(*AppError); ok {
 		return err.RootError()
