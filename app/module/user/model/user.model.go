@@ -17,3 +17,11 @@ type User struct {
 func (r *User) TableName() string {
 	return "users"
 }
+
+type UserCreateStorage struct {
+	UUID     string `json:"uuid"`
+	Email    string `json:"email"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Status   int    `json:"status"`
+}

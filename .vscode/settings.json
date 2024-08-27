@@ -11,5 +11,6 @@
     "requestid",
     "usermeta",
     "varchar"
-  ]
+  ],
+  "makefile.configureOnOpen": true
 }
