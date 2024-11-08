@@ -1,16 +1,16 @@
 package context
 
 import (
+	"database/sql"
+
 	common_struct "github.com/phucpham-infinity/go-nextpress/app/common/struct"
 	"github.com/phucpham-infinity/go-nextpress/pkg/logger"
 	"github.com/redis/go-redis/v9"
-
-	"gorm.io/gorm"
 )
 
 type IAppContext interface {
-	GetMySqlConnection() *gorm.DB
-	SetMySqlConnection(*gorm.DB) *appContext
+	GetMySqlConnection() *sql.DB
+	SetMySqlConnection(*sql.DB) *appContext
 
 	SetRedisClient(*redis.Client) *appContext
 	GetRedisClient() *redis.Client
@@ -23,7 +23,7 @@ type IAppContext interface {
 }
 
 type appContext struct {
-	DB     *gorm.DB
+	DB     *sql.DB
 	RDB    *redis.Client
 	Logger *logger.LoggerZap
 	Config *common_struct.Config
@@ -44,11 +44,11 @@ func AppContext() IAppContext {
 	return appContextInstance
 }
 
-func (ctx *appContext) GetMySqlConnection() *gorm.DB {
+func (ctx *appContext) GetMySqlConnection() *sql.DB {
 	return appContextInstance.DB
 }
 
-func (ctx *appContext) SetMySqlConnection(DB *gorm.DB) *appContext {
+func (ctx *appContext) SetMySqlConnection(DB *sql.DB) *appContext {
 	appContextInstance.DB = DB
 	return appContextInstance
 }

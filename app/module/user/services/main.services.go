@@ -3,18 +3,18 @@ package user_services
 import (
 	"context"
 
+	user_database "github.com/phucpham-infinity/go-nextpress/app/module/user/database"
 	user_model "github.com/phucpham-infinity/go-nextpress/app/module/user/model"
-	user_storage "github.com/phucpham-infinity/go-nextpress/app/module/user/storage"
 )
 
 type UserServices interface {
-	CreateUser(ctx context.Context, data *user_model.UserCreateStorage) error
+	RegisterUser(ctx context.Context, data *user_model.UserRegisterStorage) (user_database.CreateUserRow, error)
 }
 
 type userServices struct {
-	storage user_storage.UserStorage
+	storage *user_database.Queries
 }
 
-func NewUserServices(storage user_storage.UserStorage) *userServices {
+func NewUserServices(storage *user_database.Queries) *userServices {
 	return &userServices{storage: storage}
 }

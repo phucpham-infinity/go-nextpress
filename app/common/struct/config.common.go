@@ -2,7 +2,7 @@ package common_struct
 
 type Config struct {
 	Server ServerConfig `mapstructure:"server"`
-	MySql  MySqlConfig  `mapstructure:"mysql"`
+	Sql    SqlConfig    `mapstructure:"sql"`
 	Logger LoggerConfig `mapstructure:"logger"`
 	Redis  RedisConfig  `mapstructure:"redis"`
 }
@@ -11,7 +11,7 @@ type ServerConfig struct {
 	Port string `mapstructure:"port"`
 }
 
-type MySqlConfig struct {
+type SqlConfig struct {
 	Host            string `mapstructure:"host"`
 	Port            int    `mapstructure:"port"`
 	Username        string `mapstructure:"username"`

@@ -3,12 +3,12 @@ server:
 logger:
   level: 'debug'
   filename: './.tmp/logs/app.xxx.log'
-mysql:
+sql:
   host: 45.149.207.141
-  port: 33306
-  username: 'root'
-  password: 'root123'
-  dbName: 'default'
+  port: 55432
+  username: 'postgres'
+  password: 'Postgres123'
+  dbName: 'gopress'
   maxIdeConns: 10
   maxOpenConns: 100
   connMaxLifetime: 3600
