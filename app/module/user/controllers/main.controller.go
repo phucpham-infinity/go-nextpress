@@ -1,13 +1,15 @@
 package user_controllers
 
 import (
+	"github.com/gofiber/fiber/v2"
 	"github.com/phucpham-infinity/go-nextpress/app/context"
 	user_database "github.com/phucpham-infinity/go-nextpress/app/module/user/database"
 	user_services "github.com/phucpham-infinity/go-nextpress/app/module/user/services"
 )
 
 type UserController interface {
-	RegisterUser() error
+	RegisterUser(c *fiber.Ctx) error
+	GetManyUser(c *fiber.Ctx) error
 }
 type userController struct {
 	userServices user_services.UserServices

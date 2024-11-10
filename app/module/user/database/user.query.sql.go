@@ -16,7 +16,7 @@ import (
 const createUser = `-- name: CreateUser :one
 INSERT INTO users (username, password, email, activation_key)
 VALUES ($1, $2, $3, $4) 
-RETURNING uuid, username, email, activation_key, status, created_at, updated_at, registered_at, deleted_at
+RETURNING id, username, email, activation_key, status, created_at, updated_at, registered_at, deleted_at
 `
 
 type CreateUserParams struct {
@@ -27,7 +27,7 @@ type CreateUserParams struct {
 }
 
 type CreateUserRow struct {
-	Uuid          uuid.UUID
+	ID            uuid.NullUUID
 	Username      string
 	Email         string
 	ActivationKey string
@@ -47,7 +47,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (CreateU
 	)
 	var i CreateUserRow
 	err := row.Scan(
-		&i.Uuid,
+		&i.ID,
 		&i.Username,
 		&i.Email,
 		&i.ActivationKey,
@@ -61,22 +61,34 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (CreateU
 }
 
 const getManyUsers = `-- name: GetManyUsers :many
-SELECT uuid, username, password, email, activation_key, status, created_at, updated_at, registered_at, deleted_at FROM users
+SELECT id, username, email, activation_key, status, created_at, updated_at, registered_at, deleted_at 
+FROM users
 `
 
-func (q *Queries) GetManyUsers(ctx context.Context) ([]User, error) {
+type GetManyUsersRow struct {
+	ID            uuid.NullUUID
+	Username      string
+	Email         string
+	ActivationKey string
+	Status        interface{}
+	CreatedAt     time.Time
+	UpdatedAt     time.Time
+	RegisteredAt  sql.NullTime
+	DeletedAt     sql.NullTime
+}
+
+func (q *Queries) GetManyUsers(ctx context.Context) ([]GetManyUsersRow, error) {
 	rows, err := q.db.QueryContext(ctx, getManyUsers)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []User
+	var items []GetManyUsersRow
 	for rows.Next() {
-		var i User
+		var i GetManyUsersRow
 		if err := rows.Scan(
-			&i.Uuid,
+			&i.ID,
 			&i.Username,
-			&i.Password,
 			&i.Email,
 			&i.ActivationKey,
 			&i.Status,

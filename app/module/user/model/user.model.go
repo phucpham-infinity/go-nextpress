@@ -1,6 +1,7 @@
 package user_model
 
 import (
+	_ "github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 )
 
@@ -22,7 +23,7 @@ func (r *User) TableName() string {
 }
 
 type UserRegisterStorage struct {
-	Email    string `json:"email"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	Email    string `json:"email" validate:"required,email"`
+	Username string `json:"username" validate:"required,min=3,max=32"`
+	Password string `json:"password" validate:"required,min=4"`
 }

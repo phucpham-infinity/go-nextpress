@@ -1,0 +1,10 @@
+# .air.toml
+
+[build]
+cmd = "go run cmd/server/main.go" # command to run your application
+include_ext = ["go"] # file extensions to watch
+exclude_dir = ["vendor", "tmp"] # directories to exclude from watching
+exclude_file = ["air.toml"] # files to exclude from watching
+
+[build]
+pre_cmd = "lsof -ti tcp:5050"

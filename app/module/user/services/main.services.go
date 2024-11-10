@@ -9,6 +9,7 @@ import (
 
 type UserServices interface {
 	RegisterUser(ctx context.Context, data *user_model.UserRegisterStorage) (user_database.CreateUserRow, error)
+	GetManyUser(ctx context.Context) ([]user_database.GetManyUsersRow, error)
 }
 
 type userServices struct {

@@ -3,6 +3,7 @@ package context
 import (
 	"database/sql"
 
+	"github.com/go-playground/validator/v10"
 	common_struct "github.com/phucpham-infinity/go-nextpress/app/common/struct"
 	"github.com/phucpham-infinity/go-nextpress/pkg/logger"
 	"github.com/redis/go-redis/v9"
@@ -20,13 +21,16 @@ type IAppContext interface {
 
 	SetConfig(*common_struct.Config) *appContext
 	GetConfig() *common_struct.Config
+
+	GetValidator() *validator.Validate
 }
 
 type appContext struct {
-	DB     *sql.DB
-	RDB    *redis.Client
-	Logger *logger.LoggerZap
-	Config *common_struct.Config
+	DB        *sql.DB
+	RDB       *redis.Client
+	Logger    *logger.LoggerZap
+	Config    *common_struct.Config
+	Validator *validator.Validate
 }
 
 var appContextInstance *appContext
@@ -36,10 +40,11 @@ func AppContext() IAppContext {
 		return appContextInstance
 	}
 	appContextInstance = &appContext{
-		DB:     nil,
-		RDB:    nil,
-		Logger: nil,
-		Config: nil,
+		DB:        nil,
+		RDB:       nil,
+		Logger:    nil,
+		Config:    nil,
+		Validator: validator.New(),
 	}
 	return appContextInstance
 }
@@ -67,6 +72,11 @@ func (ctx *appContext) SetLogger(Logger *logger.LoggerZap) *appContext {
 	return appContextInstance
 }
 
+func (ctx *appContext) SetValidator(Logger *validator.Validate) *appContext {
+	appContextInstance.Validator = validator.New()
+	return appContextInstance
+}
+
 func (ctx *appContext) GetLogger() *logger.LoggerZap {
 	return appContextInstance.Logger
 }
@@ -78,4 +88,8 @@ func (ctx *appContext) SetConfig(Config *common_struct.Config) *appContext {
 
 func (ctx *appContext) GetConfig() *common_struct.Config {
 	return appContextInstance.Config
+}
+
+func (ctx *appContext) GetValidator() *validator.Validate {
+	return appContextInstance.Validator
 }

@@ -7,3 +7,5 @@ sql:
       go:
         package: "user_database"
         out: "app/module/user/database"
+        json_tags_id_uppercase: true
+        json_tags_case_style: "snake"

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/etag"
@@ -9,10 +11,9 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
-	common_response "github.com/phucpham-infinity/go-nextpress/app/common/response"
 	"github.com/phucpham-infinity/go-nextpress/app/configs"
 	"github.com/phucpham-infinity/go-nextpress/app/context"
-	"go.uber.org/zap"
+	user_router "github.com/phucpham-infinity/go-nextpress/app/module/user/router"
 )
 
 func main() {
@@ -28,16 +29,10 @@ func main() {
 	app.Use(idempotency.New())
 	app.Use(limiter.New())
 
-	logger := context.AppContext().GetLogger()
 	config := context.AppContext().GetConfig()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		logger.Info("Hello, World!", zap.String("okay", "success"))
-		return common_response.NewSuccessResponse(c).WithData(fiber.Map{
-			"name": "Game",
-			"age":  20,
-		}).SendJSON()
-	})
+	v1 := app.Group("/v1")
+	user_router.NewUserRouter(&v1)
 
-	app.Listen(config.Server.Port)
+	log.Fatal(app.Listen(config.Server.Port))
 }
