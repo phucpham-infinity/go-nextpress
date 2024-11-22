@@ -12,5 +12,7 @@
     "usermeta",
     "varchar"
   ],
-  "makefile.configureOnOpen": true
+  "makefile.configureOnOpen": true,
+  "IDX.aI.enableInlineCompletion": true,
+  "IDX.aI.enableCodebaseIndexing": true
 }
