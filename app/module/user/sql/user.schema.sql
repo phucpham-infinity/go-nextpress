@@ -1,3 +1,8 @@
+CREATE TYPE user_status AS ENUM (
+  'active',
+  'inactive'
+);
+
 CREATE TABLE IF NOT EXISTS users (
     id UUID DEFAULT gen_random_uuid(),
     username VARCHAR(255) NOT NULL,

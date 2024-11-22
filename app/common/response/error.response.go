@@ -90,9 +90,16 @@ func (r *AppError) IsConflict(root error) *AppError {
 }
 
 func (r *AppError) IsBadRequest(root error) *AppError {
-	r.Status = http.StatusBadRequest
-	r.RootErr = root
-	r.Message = http.StatusText(http.StatusBadRequest)
+	if root == sql.ErrNoRows || root.(*pq.Error) != nil {
+		r.Status = http.StatusBadRequest
+		r.RootErr = root
+		r.Message = http.StatusText(http.StatusBadRequest)
+		r.Key = FormatDatabaseError(root)
+	} else {
+		r.Status = http.StatusBadRequest
+		r.RootErr = root
+		r.Message = root.Error()
+	}
 	return r
 }
 

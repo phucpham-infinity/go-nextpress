@@ -7,9 +7,9 @@ import (
 	user_model "github.com/phucpham-infinity/go-nextpress/app/module/user/model"
 )
 
-func (uc *userController) ActivateUser(c *fiber.Ctx) error {
+func (uc *userController) RegisterUser(c *fiber.Ctx) error {
 
-	payload := new(user_model.ActivateUserPrams)
+	payload := new(user_model.UserRegisterStorage)
 	if err := c.BodyParser(payload); err != nil {
 		return common_response.NewAppError(c).IsBadRequest(err).SendJSON()
 	}
@@ -17,9 +17,11 @@ func (uc *userController) ActivateUser(c *fiber.Ctx) error {
 	if err := validate.Struct(payload); err != nil {
 		return common_response.NewAppError(c).IsValidationError(err).SendJSON()
 	}
-	user, err := uc.userServices.ActivateUser(c.Context(), payload)
+
+	user, err := uc.userServices.RegisterUser(c.Context(), payload)
 	if err != nil {
 		return common_response.NewAppError(c).IsBadRequest(err).SendJSON()
 	}
 	return common_response.NewSuccessResponse(c).WithData(user).SendJSON()
+
 }

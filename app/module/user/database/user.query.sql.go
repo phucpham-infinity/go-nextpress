@@ -13,6 +13,41 @@ import (
 	"github.com/google/uuid"
 )
 
+const activateUser = `-- name: ActivateUser :one
+UPDATE users SET status = 'active', activation_key = NULL, updated_at = now(), registered_at = now() 
+WHERE email = $1 
+RETURNING id, username, email, activation_key, status, created_at, updated_at, registered_at, deleted_at
+`
+
+type ActivateUserRow struct {
+	ID            uuid.NullUUID
+	Username      string
+	Email         string
+	ActivationKey string
+	Status        UserStatus
+	CreatedAt     time.Time
+	UpdatedAt     time.Time
+	RegisteredAt  sql.NullTime
+	DeletedAt     sql.NullTime
+}
+
+func (q *Queries) ActivateUser(ctx context.Context, email string) (ActivateUserRow, error) {
+	row := q.db.QueryRowContext(ctx, activateUser, email)
+	var i ActivateUserRow
+	err := row.Scan(
+		&i.ID,
+		&i.Username,
+		&i.Email,
+		&i.ActivationKey,
+		&i.Status,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.RegisteredAt,
+		&i.DeletedAt,
+	)
+	return i, err
+}
+
 const createUser = `-- name: CreateUser :one
 INSERT INTO users (username, password, email, activation_key)
 VALUES ($1, $2, $3, $4) 
@@ -31,7 +66,7 @@ type CreateUserRow struct {
 	Username      string
 	Email         string
 	ActivationKey string
-	Status        interface{}
+	Status        UserStatus
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
 	RegisteredAt  sql.NullTime
@@ -70,7 +105,7 @@ type GetManyUsersRow struct {
 	Username      string
 	Email         string
 	ActivationKey string
-	Status        interface{}
+	Status        UserStatus
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
 	RegisteredAt  sql.NullTime
@@ -108,4 +143,26 @@ func (q *Queries) GetManyUsers(ctx context.Context) ([]GetManyUsersRow, error) {
 		return nil, err
 	}
 	return items, nil
+}
+
+const getUserByEmail = `-- name: GetUserByEmail :one
+SELECT id, username, password, email, activation_key, status, created_at, updated_at, registered_at, deleted_at FROM users WHERE email = $1 LIMIT 1
+`
+
+func (q *Queries) GetUserByEmail(ctx context.Context, email string) (User, error) {
+	row := q.db.QueryRowContext(ctx, getUserByEmail, email)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Username,
+		&i.Password,
+		&i.Email,
+		&i.ActivationKey,
+		&i.Status,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.RegisteredAt,
+		&i.DeletedAt,
+	)
+	return i, err
 }
