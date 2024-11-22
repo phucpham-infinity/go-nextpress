@@ -5,12 +5,12 @@
 package user_database
 
 import (
-	"database/sql"
 	"database/sql/driver"
 	"fmt"
 	"time"
 
 	"github.com/google/uuid"
+	null "gopkg.in/guregu/null.v4"
 )
 
 type UserStatus string
@@ -33,8 +33,8 @@ func (e *UserStatus) Scan(src interface{}) error {
 }
 
 type NullUserStatus struct {
-	UserStatus UserStatus
-	Valid      bool // Valid is true if UserStatus is not NULL
+	UserStatus UserStatus `json:"user_status"`
+	Valid      bool       `json:"valid"` // Valid is true if UserStatus is not NULL
 }
 
 // Scan implements the Scanner interface.
@@ -56,14 +56,14 @@ func (ns NullUserStatus) Value() (driver.Value, error) {
 }
 
 type User struct {
-	ID            uuid.NullUUID
-	Username      string
-	Password      string
-	Email         string
-	ActivationKey string
-	Status        UserStatus
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
-	RegisteredAt  sql.NullTime
-	DeletedAt     sql.NullTime
+	ID            uuid.NullUUID `json:"id"`
+	Username      string        `json:"username"`
+	Password      string        `json:"password"`
+	Email         string        `json:"email"`
+	ActivationKey string        `json:"activation_key"`
+	Status        UserStatus    `json:"status"`
+	CreatedAt     time.Time     `json:"created_at"`
+	UpdatedAt     time.Time     `json:"updated_at"`
+	RegisteredAt  null.Time     `json:"registered_at"`
+	DeletedAt     null.Time     `json:"deleted_at"`
 }

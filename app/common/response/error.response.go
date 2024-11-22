@@ -90,11 +90,16 @@ func (r *AppError) IsConflict(root error) *AppError {
 }
 
 func (r *AppError) IsBadRequest(root error) *AppError {
-	if root == sql.ErrNoRows || root.(*pq.Error) != nil {
+	if root == sql.ErrNoRows {
 		r.Status = http.StatusBadRequest
 		r.RootErr = root
 		r.Message = http.StatusText(http.StatusBadRequest)
-		r.Key = FormatDatabaseError(root)
+		r.Key = "record_not_found"
+	} else if pqErr, ok := root.(*pq.Error); ok {
+		r.Status = http.StatusBadRequest
+		r.RootErr = root
+		r.Message = http.StatusText(http.StatusBadRequest)
+		r.Key = FormatDatabaseError(pqErr)
 	} else {
 		r.Status = http.StatusBadRequest
 		r.RootErr = root

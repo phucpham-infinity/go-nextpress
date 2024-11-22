@@ -5,11 +5,13 @@ go 1.23.0
 require (
 	github.com/go-playground/validator/v10 v10.22.1
 	github.com/gofiber/fiber/v2 v2.52.5
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/lib/pq v1.10.9
 	github.com/redis/go-redis/v9 v9.6.1
 	github.com/spf13/viper v1.19.0
 	go.uber.org/zap v1.27.0
+	gopkg.in/guregu/null.v4 v4.0.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gorm.io/gorm v1.25.11
 )

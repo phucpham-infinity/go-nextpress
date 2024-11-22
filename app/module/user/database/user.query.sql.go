@@ -7,28 +7,28 @@ package user_database
 
 import (
 	"context"
-	"database/sql"
 	"time"
 
 	"github.com/google/uuid"
+	null "gopkg.in/guregu/null.v4"
 )
 
 const activateUser = `-- name: ActivateUser :one
-UPDATE users SET status = 'active', activation_key = NULL, updated_at = now(), registered_at = now() 
+UPDATE users SET status = 'active', activation_key = '', updated_at = now(), registered_at = now() 
 WHERE email = $1 
 RETURNING id, username, email, activation_key, status, created_at, updated_at, registered_at, deleted_at
 `
 
 type ActivateUserRow struct {
-	ID            uuid.NullUUID
-	Username      string
-	Email         string
-	ActivationKey string
-	Status        UserStatus
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
-	RegisteredAt  sql.NullTime
-	DeletedAt     sql.NullTime
+	ID            uuid.NullUUID `json:"id"`
+	Username      string        `json:"username"`
+	Email         string        `json:"email"`
+	ActivationKey string        `json:"activation_key"`
+	Status        UserStatus    `json:"status"`
+	CreatedAt     time.Time     `json:"created_at"`
+	UpdatedAt     time.Time     `json:"updated_at"`
+	RegisteredAt  null.Time     `json:"registered_at"`
+	DeletedAt     null.Time     `json:"deleted_at"`
 }
 
 func (q *Queries) ActivateUser(ctx context.Context, email string) (ActivateUserRow, error) {
@@ -55,22 +55,22 @@ RETURNING id, username, email, activation_key, status, created_at, updated_at, r
 `
 
 type CreateUserParams struct {
-	Username      string
-	Password      string
-	Email         string
-	ActivationKey string
+	Username      string `json:"username"`
+	Password      string `json:"password"`
+	Email         string `json:"email"`
+	ActivationKey string `json:"activation_key"`
 }
 
 type CreateUserRow struct {
-	ID            uuid.NullUUID
-	Username      string
-	Email         string
-	ActivationKey string
-	Status        UserStatus
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
-	RegisteredAt  sql.NullTime
-	DeletedAt     sql.NullTime
+	ID            uuid.NullUUID `json:"id"`
+	Username      string        `json:"username"`
+	Email         string        `json:"email"`
+	ActivationKey string        `json:"activation_key"`
+	Status        UserStatus    `json:"status"`
+	CreatedAt     time.Time     `json:"created_at"`
+	UpdatedAt     time.Time     `json:"updated_at"`
+	RegisteredAt  null.Time     `json:"registered_at"`
+	DeletedAt     null.Time     `json:"deleted_at"`
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (CreateUserRow, error) {
@@ -101,15 +101,15 @@ FROM users
 `
 
 type GetManyUsersRow struct {
-	ID            uuid.NullUUID
-	Username      string
-	Email         string
-	ActivationKey string
-	Status        UserStatus
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
-	RegisteredAt  sql.NullTime
-	DeletedAt     sql.NullTime
+	ID            uuid.NullUUID `json:"id"`
+	Username      string        `json:"username"`
+	Email         string        `json:"email"`
+	ActivationKey string        `json:"activation_key"`
+	Status        UserStatus    `json:"status"`
+	CreatedAt     time.Time     `json:"created_at"`
+	UpdatedAt     time.Time     `json:"updated_at"`
+	RegisteredAt  null.Time     `json:"registered_at"`
+	DeletedAt     null.Time     `json:"deleted_at"`
 }
 
 func (q *Queries) GetManyUsers(ctx context.Context) ([]GetManyUsersRow, error) {

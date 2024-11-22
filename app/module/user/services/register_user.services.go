@@ -22,7 +22,7 @@ func (us *userServices) RegisterUser(ctx context.Context, data *user_model.UserR
 	expirationTime := time.Now().Add(90 * 24 * time.Hour).Unix()
 	finalPassword := fmt.Sprintf("%s::%d", string(hashedPassword), expirationTime)
 
-	activationKey, err := common_helper.GenerateActivationKey(32)
+	activationKey, err := common_helper.GenerateActivationKey(8)
 	if err != nil {
 		return user_database.CreateUserRow{}, err
 	}

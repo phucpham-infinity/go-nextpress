@@ -3,6 +3,9 @@ server:
 logger:
   level: 'debug'
   filename: './.tmp/logs/app.xxx.log'
+jwt:
+  secret: "be-gopress"
+  expirationDays: 30
 sql:
   host: 45.149.207.141
   port: 55432

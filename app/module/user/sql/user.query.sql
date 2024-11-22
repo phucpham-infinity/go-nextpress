@@ -11,6 +11,6 @@ RETURNING id, username, email, activation_key, status, created_at, updated_at, r
 SELECT * FROM users WHERE email = $1 LIMIT 1;
 
 -- name: ActivateUser :one
-UPDATE users SET status = 'active', activation_key = NULL, updated_at = now(), registered_at = now() 
+UPDATE users SET status = 'active', activation_key = '', updated_at = now(), registered_at = now() 
 WHERE email = $1 
 RETURNING id, username, email, activation_key, status, created_at, updated_at, registered_at, deleted_at;

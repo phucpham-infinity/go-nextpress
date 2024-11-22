@@ -2,25 +2,8 @@ package user_model
 
 import (
 	_ "github.com/go-playground/validator/v10"
-	"github.com/google/uuid"
+	user_database "github.com/phucpham-infinity/go-nextpress/app/module/user/database"
 )
-
-type User struct {
-	UUID          uuid.UUID `json:"uuid"`
-	Email         string    `json:"email"`
-	Username      string    `json:"username"`
-	Password      string    `json:"password"`
-	Status        int       `json:"status"`
-	ActivationKey string    `json:"activation_key"`
-	RegisteredAt  string    `json:"registered_at"`
-	CreatedAt     string    `json:"created_at"`
-	UpdatedAt     string    `json:"updated_at"`
-	DeletedAt     string    `json:"deleted_at"`
-}
-
-func (r *User) TableName() string {
-	return "users"
-}
 
 type UserRegisterParams struct {
 	Email         string `json:"email" validate:"required,email"`
@@ -31,5 +14,15 @@ type UserRegisterParams struct {
 
 type ActivateUserParams struct {
 	Email         string `json:"email" validate:"required,email"`
-	ActivationKey string `json:"activation-key" validate:"required,min=4"`
+	ActivationKey string `json:"activationKey" validate:"required,min=4"`
+}
+
+type LoginUserParams struct {
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required,min=4"`
+}
+
+type LoginPayload struct {
+	Token string                      `json:"token"`
+	User  user_database.CreateUserRow `json:"user"`
 }

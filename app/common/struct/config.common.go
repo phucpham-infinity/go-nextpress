@@ -5,6 +5,7 @@ type Config struct {
 	Sql    SqlConfig    `mapstructure:"sql"`
 	Logger LoggerConfig `mapstructure:"logger"`
 	Redis  RedisConfig  `mapstructure:"redis"`
+	JWT    JwtConfig    `mapstructure:"jwt"`
 }
 
 type ServerConfig struct {
@@ -30,4 +31,9 @@ type LoggerConfig struct {
 type RedisConfig struct {
 	Host string `mapstructure:"host"`
 	Port int    `mapstructure:"port"`
+}
+
+type JwtConfig struct {
+	Secret         string `mapstructure:"secret"`
+	ExpirationDays int    `mapstructure:"expirationDays"`
 }
