@@ -11,4 +11,5 @@ func NewUserRouter(v1 *fiber.Router) {
 
 	userUserRouter.Get("/", userControllers.GetManyUser)
 	userUserRouter.Post("/register", userControllers.RegisterUser)
+	userUserRouter.Post("/activate", userControllers.ActivateUser)
 }

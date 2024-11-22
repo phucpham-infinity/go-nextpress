@@ -11,11 +11,12 @@ func (us *userServices) RegisterUser(ctx context.Context, data *user_model.UserR
 	email := data.Email
 	password := data.Password
 	username := data.Username
+	activationKey := data.ActivationKey
 
 	return us.storage.CreateUser(ctx, user_database.CreateUserParams{
 		Email:         email,
 		Password:      password,
 		Username:      username,
-		ActivationKey: "1111",
+		ActivationKey: activationKey,
 	})
 }

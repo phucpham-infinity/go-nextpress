@@ -9,6 +9,7 @@ import (
 
 type UserController interface {
 	RegisterUser(c *fiber.Ctx) error
+	ActivateUser(c *fiber.Ctx) error
 	GetManyUser(c *fiber.Ctx) error
 }
 type userController struct {

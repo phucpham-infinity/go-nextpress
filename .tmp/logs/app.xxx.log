@@ -196,3 +196,7 @@
 {"level":"INFO","time":"2024-11-10T23:15:37.873+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
 {"level":"INFO","time":"2024-11-10T23:15:38.913+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
 {"level":"INFO","time":"2024-11-10T23:15:38.913+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T12:48:10.187+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T12:48:10.188+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T12:48:11.134+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T12:48:11.134+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
