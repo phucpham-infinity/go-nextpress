@@ -9,7 +9,7 @@ import (
 
 func (uc *userController) ActivateUser(c *fiber.Ctx) error {
 
-	payload := new(user_model.ActivateUserPrams)
+	payload := new(user_model.ActivateUserParams)
 	if err := c.BodyParser(payload); err != nil {
 		return common_response.NewAppError(c).IsBadRequest(err).SendJSON()
 	}

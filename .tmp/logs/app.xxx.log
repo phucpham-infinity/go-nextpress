@@ -200,3 +200,33 @@
 {"level":"INFO","time":"2024-11-22T12:48:10.188+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
 {"level":"INFO","time":"2024-11-22T12:48:11.134+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
 {"level":"INFO","time":"2024-11-22T12:48:11.134+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T22:40:05.871+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T22:40:05.872+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T22:40:07.109+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T22:40:07.110+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T22:59:38.155+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T22:59:38.156+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T22:59:39.164+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T22:59:39.164+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T23:00:44.109+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T23:00:44.110+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T23:00:45.238+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T23:00:45.241+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T23:00:55.080+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T23:00:55.081+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T23:00:55.986+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T23:00:55.986+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T23:01:30.433+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T23:01:30.435+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T23:01:31.346+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T23:01:31.347+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T23:05:46.176+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T23:05:46.176+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T23:05:47.194+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T23:05:47.195+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}
+{"level":"INFO","time":"2024-11-22T23:07:20.459+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T23:07:20.460+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T23:07:44.071+0700","caller":"configs/sql.config.go:28","msg":"Connected to database! gopress"}
+{"level":"INFO","time":"2024-11-22T23:07:44.072+0700","caller":"configs/sql.config.go:42","msg":"Set pool database success!"}
+{"level":"INFO","time":"2024-11-22T23:07:45.170+0700","caller":"configs/redis.config.go:39","msg":"Connected to redis! 45.149.207.141:16379"}
+{"level":"INFO","time":"2024-11-22T23:07:45.171+0700","caller":"configs/main.config.go:12","msg":"Configs loaded!"}

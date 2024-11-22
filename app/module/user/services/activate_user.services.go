@@ -8,7 +8,7 @@ import (
 	user_model "github.com/phucpham-infinity/go-nextpress/app/module/user/model"
 )
 
-func (us *userServices) ActivateUser(ctx context.Context, data *user_model.ActivateUserPrams) (user_database.ActivateUserRow, error) {
+func (us *userServices) ActivateUser(ctx context.Context, data *user_model.ActivateUserParams) (user_database.ActivateUserRow, error) {
 	email := data.Email
 
 	user, err := us.storage.GetUserByEmail(ctx, email)

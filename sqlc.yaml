@@ -8,4 +8,4 @@ sql:
         package: "user_database"
         out: "app/module/user/database"
         json_tags_id_uppercase: false
-        json_tags_case_style: "snake"
+        json_tags_case_style: "camel"

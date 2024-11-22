@@ -11,7 +11,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (us *userServices) RegisterUser(ctx context.Context, data *user_model.UserRegisterStorage) (user_database.CreateUserRow, error) {
+func (us *userServices) RegisterUser(ctx context.Context, data *user_model.UserRegisterParams) (user_database.CreateUserRow, error) {
 	email := data.Email
 	username := data.Username
 

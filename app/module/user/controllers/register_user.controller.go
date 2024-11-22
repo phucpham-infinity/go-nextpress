@@ -9,7 +9,7 @@ import (
 
 func (uc *userController) RegisterUser(c *fiber.Ctx) error {
 
-	payload := new(user_model.UserRegisterStorage)
+	payload := new(user_model.UserRegisterParams)
 	if err := c.BodyParser(payload); err != nil {
 		return common_response.NewAppError(c).IsBadRequest(err).SendJSON()
 	}

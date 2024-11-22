@@ -22,14 +22,14 @@ func (r *User) TableName() string {
 	return "users"
 }
 
-type UserRegisterStorage struct {
+type UserRegisterParams struct {
 	Email         string `json:"email" validate:"required,email"`
 	Username      string `json:"username" validate:"required,min=3,max=32"`
 	Password      string `json:"password" validate:"required,min=4"`
 	ActivationKey string
 }
 
-type ActivateUserPrams struct {
+type ActivateUserParams struct {
 	Email         string `json:"email" validate:"required,email"`
 	ActivationKey string `json:"activation-key" validate:"required,min=4"`
 }

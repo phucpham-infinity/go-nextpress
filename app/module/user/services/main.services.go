@@ -8,8 +8,8 @@ import (
 )
 
 type UserServices interface {
-	RegisterUser(ctx context.Context, data *user_model.UserRegisterStorage) (user_database.CreateUserRow, error)
-	ActivateUser(ctx context.Context, data *user_model.ActivateUserPrams) (user_database.ActivateUserRow, error)
+	RegisterUser(ctx context.Context, data *user_model.UserRegisterParams) (user_database.CreateUserRow, error)
+	ActivateUser(ctx context.Context, data *user_model.ActivateUserParams) (user_database.ActivateUserRow, error)
 	GetManyUser(ctx context.Context) ([]user_database.GetManyUsersRow, error)
 }
 
