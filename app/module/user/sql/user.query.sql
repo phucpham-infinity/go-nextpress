@@ -10,6 +10,9 @@ RETURNING id, username, email, activation_key, status, created_at, updated_at, r
 -- name: GetUserByEmail :one
 SELECT * FROM users WHERE email = $1 LIMIT 1;
 
+-- name: GetUserById :one
+SELECT * FROM users WHERE id = $1 LIMIT 1;
+
 -- name: ActivateUser :one
 UPDATE users SET status = 'active', activation_key = '', updated_at = now(), registered_at = now() 
 WHERE email = $1 

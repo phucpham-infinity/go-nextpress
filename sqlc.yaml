@@ -20,3 +20,14 @@ sql:
         json_tags_id_uppercase: false
         json_tags_case_style: "snake"
         emit_json_tags: true
+
+  - engine: "postgresql"
+    queries: "app/module/roles/sql"
+    schema: "app/module/roles/sql"
+    gen:
+      go:
+        package: "roles_database"
+        out: "app/module/roles/database"
+        json_tags_id_uppercase: false
+        json_tags_case_style: "snake"
+        emit_json_tags: true

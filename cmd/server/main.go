@@ -8,11 +8,11 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/etag"
 	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/idempotency"
-	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/phucpham-infinity/go-nextpress/app/configs"
 	"github.com/phucpham-infinity/go-nextpress/app/context"
+	user_roles_router "github.com/phucpham-infinity/go-nextpress/app/module/roles/router"
 	user_router "github.com/phucpham-infinity/go-nextpress/app/module/user/router"
 )
 
@@ -27,12 +27,13 @@ func main() {
 	app.Use(etag.New())
 	app.Use(logger.New())
 	app.Use(idempotency.New())
-	app.Use(limiter.New())
+	// app.Use(limiter.New())
 
 	config := context.AppContext().GetConfig()
 
 	v1 := app.Group("/v1")
 	user_router.NewUserRouter(&v1)
+	user_roles_router.NewUserRolesRouter(&v1)
 
 	log.Fatal(app.Listen(config.Server.Port))
 }

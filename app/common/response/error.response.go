@@ -71,7 +71,7 @@ func (r *AppError) IsNotFound(root error) *AppError {
 func (r *AppError) IsUnauthorized(root error) *AppError {
 	r.Status = http.StatusUnauthorized
 	r.RootErr = root
-	r.Message = http.StatusText(http.StatusUnauthorized)
+	r.Message = root.Error()
 	return r
 }
 
