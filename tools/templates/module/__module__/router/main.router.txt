@@ -15,7 +15,7 @@ func New__model__(pascalCase)Router(v1 *fiber.Router) {
 
 	__model__(camelCase)Router.Post("/", middlewares.AuthenticationMiddleware(), __model__(camelCase)Controllers.Create__model__(camelCase))
 
-    __model__(camelCase)Router.Put("/:id", middlewares.AuthenticationMiddleware(), __model__(camelCase)Controllers.Update__model__(camelCase))
+    __model__(camelCase)Router.Put("/:id", middlewares.AuthenticationMiddleware(), __model__(camelCase)Controllers.Update__model__(camelCase)ById)
 
-    __model__(camelCase)Router.Delete("/:id", middlewares.AuthenticationMiddleware(), __model__(camelCase)Controllers.Delete__model__(camelCase))
+    __model__(camelCase)Router.Delete("/:id", middlewares.AuthenticationMiddleware(), __model__(camelCase)Controllers.Delete__model__(camelCase)ById)
 }
