@@ -1,0 +1,17 @@
+package __model__router
+
+import (
+	"github.com/gofiber/fiber/v2"
+	middlewares "github.com/phucpham-infinity/go-nextpress/app/middlewares"
+	user_controllers "github.com/phucpham-infinity/go-nextpress/app/module/user/controllers"
+)
+
+func New__model__(pascalCase)Router(v1 *fiber.Router) {
+	__model__(camelCase)Controllers := user_controllers.New__model__(pascalCase)Controller()
+	__model__(camelCase)Router := (*v1).Group("/user")
+
+	__model__(camelCase)Router.Get("/", userControllers.GetManyUser)
+	__model__(camelCase)Router.Post("/register", userControllers.RegisterUser)
+	__model__(camelCase)Router.Post("/activate", userControllers.ActivateUser)
+	__model__(camelCase)Router.Get("/login", userControllers.LoginUser)
+}

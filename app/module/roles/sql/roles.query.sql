@@ -24,12 +24,23 @@ DELETE FROM roles
 WHERE id = $1
 RETURNING *;
 
+--name: SoftDeleteOneRoles :one
+UPDATE roles
+SET deleted_at = now()
+WHERE id = $1
+RETURNING *;
+
+--name: RestoreOneRoles :one
+UPDATE roles
+SET deleted_at = NULL
+WHERE id = $1
+RETURNING *;
+
 -- name: GetManyRoles :many
 SELECT *
 FROM roles
 WHERE
-    (:text_search IS NULL OR role ILIKE CONCAT('%', :text_search, '%'))
-  AND (:filter_role IS NULL OR role = :filter_role)
+  (:filter_role IS NULL OR role = :filter_role)
 ORDER BY
     CASE
         WHEN :sort_order = 'asc' THEN
@@ -48,3 +59,9 @@ ORDER BY
                 END
         END DESC
 LIMIT :page_limit OFFSET (:page - 1) * :page_limit;
+
+-- name: GetTotalItems :many
+SELECT COUNT(*) AS total_items
+FROM roles
+WHERE
+  (:filter_role IS NULL OR role = :filter_role);
