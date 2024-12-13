@@ -12,19 +12,38 @@ import (
 	"github.com/google/uuid"
 )
 
-const createOneRoles = `-- name: CreateOneRoles :one
+const createRole = `-- name: CreateRole :one
 INSERT INTO roles (role, permission)
 VALUES ($1, $2)
 RETURNING id, role, permission, created_at, updated_at
 `
 
-type CreateOneRolesParams struct {
+type CreateRoleParams struct {
 	Role       string          `json:"role"`
 	Permission json.RawMessage `json:"permission"`
 }
 
-func (q *Queries) CreateOneRoles(ctx context.Context, arg CreateOneRolesParams) (Role, error) {
-	row := q.db.QueryRowContext(ctx, createOneRoles, arg.Role, arg.Permission)
+func (q *Queries) CreateRole(ctx context.Context, arg CreateRoleParams) (Role, error) {
+	row := q.db.QueryRowContext(ctx, createRole, arg.Role, arg.Permission)
+	var i Role
+	err := row.Scan(
+		&i.ID,
+		&i.Role,
+		&i.Permission,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const deleteRoleById = `-- name: DeleteRoleById :one
+DELETE FROM roles
+WHERE id = $1
+RETURNING id, role, permission, created_at, updated_at
+`
+
+func (q *Queries) DeleteRoleById(ctx context.Context, id uuid.UUID) (Role, error) {
+	row := q.db.QueryRowContext(ctx, deleteRoleById, id)
 	var i Role
 	err := row.Scan(
 		&i.ID,
@@ -79,6 +98,155 @@ LIMIT 1
 
 func (q *Queries) GetByIdRoles(ctx context.Context, id uuid.UUID) (Role, error) {
 	row := q.db.QueryRowContext(ctx, getByIdRoles, id)
+	var i Role
+	err := row.Scan(
+		&i.ID,
+		&i.Role,
+		&i.Permission,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getManyRoles = `-- name: GetManyRoles :many
+SELECT id, role, permission, created_at, updated_at
+FROM roles
+WHERE
+  ($1 IS NULL OR role = $1)
+ORDER BY
+    CASE
+        WHEN $2 = 'asc' THEN
+            CASE $3
+                WHEN 'role' THEN role
+                WHEN 'created_at' THEN created_at
+                WHEN 'updated_at' THEN updated_at
+                END
+        END ASC,
+    CASE
+        WHEN $2 = 'desc' THEN
+            CASE $3
+                WHEN 'role' THEN role
+                WHEN 'created_at' THEN created_at
+                WHEN 'updated_at' THEN updated_at
+                END
+        END DESC
+LIMIT $5 OFFSET ($4 - 1) * $5
+`
+
+type GetManyRolesParams struct {
+	FilterRole interface{} `json:"filter_role"`
+	SortOrder  interface{} `json:"sort_order"`
+	SortName   interface{} `json:"sort_name"`
+	Page       interface{} `json:"page"`
+	PageLimit  int32       `json:"page_limit"`
+}
+
+func (q *Queries) GetManyRoles(ctx context.Context, arg GetManyRolesParams) ([]Role, error) {
+	rows, err := q.db.QueryContext(ctx, getManyRoles,
+		arg.FilterRole,
+		arg.SortOrder,
+		arg.SortName,
+		arg.Page,
+		arg.PageLimit,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Role
+	for rows.Next() {
+		var i Role
+		if err := rows.Scan(
+			&i.ID,
+			&i.Role,
+			&i.Permission,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getTotalRoles = `-- name: GetTotalRoles :one
+SELECT COUNT(*) AS total_items
+FROM roles
+WHERE
+  ($1 IS NULL OR role = $1)
+`
+
+func (q *Queries) GetTotalRoles(ctx context.Context, filterRole interface{}) (int64, error) {
+	row := q.db.QueryRowContext(ctx, getTotalRoles, filterRole)
+	var total_items int64
+	err := row.Scan(&total_items)
+	return total_items, err
+}
+
+const restoreRoleById = `-- name: RestoreRoleById :one
+UPDATE roles
+SET deleted_at = NULL
+WHERE id = $1
+RETURNING id, role, permission, created_at, updated_at
+`
+
+func (q *Queries) RestoreRoleById(ctx context.Context, id uuid.UUID) (Role, error) {
+	row := q.db.QueryRowContext(ctx, restoreRoleById, id)
+	var i Role
+	err := row.Scan(
+		&i.ID,
+		&i.Role,
+		&i.Permission,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const softDeleteRoleById = `-- name: SoftDeleteRoleById :one
+UPDATE roles
+SET deleted_at = now()
+WHERE id = $1
+RETURNING id, role, permission, created_at, updated_at
+`
+
+func (q *Queries) SoftDeleteRoleById(ctx context.Context, id uuid.UUID) (Role, error) {
+	row := q.db.QueryRowContext(ctx, softDeleteRoleById, id)
+	var i Role
+	err := row.Scan(
+		&i.ID,
+		&i.Role,
+		&i.Permission,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const updateRoleById = `-- name: UpdateRoleById :one
+UPDATE roles
+    set role = $2, 
+    permission = $3
+WHERE id = $1
+RETURNING id, role, permission, created_at, updated_at
+`
+
+type UpdateRoleByIdParams struct {
+	ID         uuid.UUID       `json:"id"`
+	Role       string          `json:"role"`
+	Permission json.RawMessage `json:"permission"`
+}
+
+func (q *Queries) UpdateRoleById(ctx context.Context, arg UpdateRoleByIdParams) (Role, error) {
+	row := q.db.QueryRowContext(ctx, updateRoleById, arg.ID, arg.Role, arg.Permission)
 	var i Role
 	err := row.Scan(
 		&i.ID,

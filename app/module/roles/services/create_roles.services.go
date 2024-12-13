@@ -8,7 +8,7 @@ import (
 )
 
 func (us *rolesServices) CreateRoles(ctx context.Context, data *roles_model.CreateRolesBody) (roles_database.Role, error) {
-	return us.storage.CreateOneRoles(ctx, roles_database.CreateOneRolesParams{
+	return us.storage.CreateRole(ctx, roles_database.CreateRoleParams{
 		Role:       data.Role,
 		Permission: data.Permission,
 	})
