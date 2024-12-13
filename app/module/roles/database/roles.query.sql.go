@@ -139,7 +139,7 @@ type GetManyRolesParams struct {
 	SortOrder  interface{} `json:"sort_order"`
 	SortName   interface{} `json:"sort_name"`
 	Page       interface{} `json:"page"`
-	PageLimit  int32       `json:"page_limit"`
+	PageLimit  int         `json:"page_limit"`
 }
 
 func (q *Queries) GetManyRoles(ctx context.Context, arg GetManyRolesParams) ([]Role, error) {

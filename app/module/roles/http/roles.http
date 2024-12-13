@@ -1,4 +1,7 @@
 ### Get all roles
+GET http://127.0.0.1:5050/v1/roles/all
+
+### Get many roles
 GET http://127.0.0.1:5050/v1/roles
 
 ### Delete role by id
@@ -10,9 +13,9 @@ Content-Type: application/json
 
 {
   "id": "1ef58568-690e-4c29-ba97-4fd49fabd303",
-  "role": "user",
+  "role": "user12",
   "permission": {
-    "name": "1000"
+    "name": "100012"
   }
 }
 

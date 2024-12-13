@@ -10,6 +10,7 @@ import (
 
 type RolesServices interface {
 	GetAllRoles(ctx context.Context) ([]roles_database.Role, error)
+	GetRoles(ctx context.Context, params *roles_database.GetManyRolesParams) ([]roles_database.Role, error)
 	GetByIdRoles(ctx context.Context, id uuid.UUID) (roles_database.Role, error)
 	UpdateRoles(ctx context.Context, data *roles_database.UpdateRoleByIdParams) (roles_database.Role, error)
 	DeleteByIdRoles(ctx context.Context, id uuid.UUID) (roles_database.Role, error)

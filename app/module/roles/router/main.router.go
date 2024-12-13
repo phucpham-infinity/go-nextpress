@@ -17,7 +17,8 @@ func NewUserRolesRouter(v1 *fiber.Router) {
 	//
 	//rolesRouter.Delete("/:id", middlewares.AuthenticationMiddleware(), rolesController.DeleteRolesById)
 
-	rolesRouter.Get("/", rolesController.GetAllRoles)
+	rolesRouter.Get("/", rolesController.GetRoles)
+	rolesRouter.Get("/all", rolesController.GetAllRoles)
 	rolesRouter.Get("/:id", rolesController.GetByIdRoles)
 
 	rolesRouter.Post("/", rolesController.CreateRoles)
