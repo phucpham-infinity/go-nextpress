@@ -1,0 +1,29 @@
+### Get all roles
+GET http://127.0.0.1:5050/v1/roles
+
+### Delete role by id
+DELETE http://127.0.0.1:5050/v1/roles/f57657eb-dfbf-43f9-9ad6-cc106a0a4e9f
+
+### Create role
+POST http://127.0.0.1:5050/v1/roles
+Content-Type: application/json
+
+{
+  "id": "1ef58568-690e-4c29-ba97-4fd49fabd303",
+  "role": "user",
+  "permission": {
+    "name": "1000"
+  }
+}
+
+### Update role
+PUT http://127.0.0.1:5050/v1/roles
+Content-Type: application/json
+
+{
+  "id": "f57657eb-dfbf-43f9-9ad6-cc106a0a4e9f",
+  "role": "user3",
+  "permission": {
+    "name": "10003"
+  }
+}
