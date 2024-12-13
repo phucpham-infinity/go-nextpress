@@ -11,6 +11,8 @@ import (
 type RolesController interface {
 	GetAllRoles(c *fiber.Ctx) error
 	GetByIdRoles(c *fiber.Ctx) error
+	UpdateRoles(ctx *fiber.Ctx) error
+	DeleteRolesById(ctx *fiber.Ctx) error
 }
 type rolesController struct {
 	userRolesServices roles_services.RolesServices

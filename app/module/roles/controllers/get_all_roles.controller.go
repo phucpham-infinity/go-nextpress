@@ -6,11 +6,9 @@ import (
 )
 
 func (uc *rolesController) GetAllRoles(c *fiber.Ctx) error {
-
 	user, err := uc.userRolesServices.GetAllRoles(c.Context())
 	if err != nil {
 		return common_response.NewAppError(c).IsBadRequest(err).SendJSON()
 	}
 	return common_response.NewSuccessResponse(c).WithData(user).SendJSON()
-
 }
